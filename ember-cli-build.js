@@ -4,7 +4,9 @@ var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
-    // Add options here
+    'ember-class-counter': {
+      environments: ['development']
+    }
   });
 
   /*
@@ -13,6 +15,11 @@ module.exports = function(defaults) {
     This build file does *not* influence how the addon or the app using it
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
+  app.registry.add('htmlbars-ast-plugin', {
+    name: 'count-classes',
+    plugin: ClassCounter,
+    baseDir: function() { return __dirname; }
+  });
 
   return app.toTree();
 };
