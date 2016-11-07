@@ -13,8 +13,8 @@ Credits for this go to the folks at [Simplabs](http://simplabs.com/) for their u
 this approach in their
 [ember-test-selectors](https://github.com/simplabs/ember-test-selectors) addon.
 
-To test this out, I didn't use the built-in dummy app, but instead had used `npm
-link` with another dummy project I had laying around.
+To see this in action, run the dummy app at `tests/dummy` and visit
+http://localhost:4200 (or another port if you specify it).
 
 ## Installation
 
