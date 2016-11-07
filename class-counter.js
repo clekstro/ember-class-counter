@@ -8,7 +8,6 @@ ClassCounter.prototype.transform = function(ast) {
   var walker = new this.syntax.Walker();
 
   walker.visit(ast, function(node) {
-    var classes = [];
     if (node.type === 'ElementNode') {
       node.attributes.map(attr => {
         if (attr.name == 'class') {
