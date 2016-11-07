@@ -1,6 +1,7 @@
 /*jshint node:true*/
 /* global require, module */
 var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+var ClassCounter = require('./class-counter');
 
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
@@ -16,7 +17,7 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
   app.registry.add('htmlbars-ast-plugin', {
-    name: 'count-classes',
+    name: 'class-counter',
     plugin: ClassCounter,
     baseDir: function() { return __dirname; }
   });

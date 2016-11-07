@@ -2,20 +2,19 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-class-counter'
+  name: 'ember-class-counter',
+
+  included: function (app) {
+    this.app = app;
+  },
+
   setupPreprocessorRegistry: function(type, registry) {
-    var appOptions = registry.app.options || {};
-    var addonOptions = appOptions['ember-class-counter'] || {};
-    var environments = addonOptions.environments || ['development'];
+    var ClassCounter = require('./class-counter');
 
-    if (_includes(environments, registry.app.env)) {
-      var ClassCounter = require('./class-counter');
-
-      registry.add('htmlbars-ast-plugin', {
-        name: 'count-classes',
-        plugin: ClassCounter,
-        baseDir: function() { return __dirname; }
-      });
-    }
+    registry.add('htmlbars-ast-plugin', {
+      name: 'count-classes',
+      plugin: ClassCounter,
+      baseDir: function() { return __dirname; }
+    });
   }
 };

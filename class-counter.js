@@ -1,12 +1,27 @@
 /*jshint node:true*/
 
-ClassCounter.prototype.transform = function(ast) {
-  console.log('AST', ast);
-  // var walker = new this.syntax.Walker();
+function ClassCounter() {
+  this.syntax = null;
+}
 
-  // walker.visit(ast, function(node) {
-  //   console.log('node object', node);
-  // });
+ClassCounter.prototype.transform = function(ast) {
+  var walker = new this.syntax.Walker();
+
+  walker.visit(ast, function(node) {
+    var classes = [];
+    if (node.type === 'ElementNode') {
+      node.attributes.map(attr => {
+        if (attr.name == 'class') {
+          var attrClasses = attr.value.chars.split(' ');
+          if (attrClasses.length > 3) {
+            attr.value.chars += " many";
+          } else {
+            attr.value.chars += " few";
+          }
+        }
+      });
+    }
+  });
 
   return ast;
 };
